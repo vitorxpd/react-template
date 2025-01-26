@@ -4,8 +4,8 @@ import { immer } from 'zustand/middleware/immer';
 
 import { env } from '@/config/env';
 
-import { createCounterSlice } from './slices/counterSlice';
-import { Store } from './Store';
+import { createCounterSlice } from './slices/counter-slice';
+import { Store } from './store';
 
 export const useStore = create<Store>()(
   devtools(

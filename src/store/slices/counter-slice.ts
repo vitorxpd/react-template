@@ -1,4 +1,4 @@
-import { StoreSlice } from '../Store';
+import { StoreSlice } from '../store';
 
 type CounterState = {
   count: number;
