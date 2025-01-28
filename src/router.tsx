@@ -1,7 +1,6 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { DefaultLayout } from './layouts/default-layout';
-import { Home } from './pages/home';
+import { routes } from './config/routes';
 
 export function Router() {
   return (
@@ -12,11 +11,17 @@ export function Router() {
       }}
     >
       <Routes>
-        <Route element={<DefaultLayout />}>
-          <Route path="/" element={<Home />} />
-        </Route>
+        {routes.map(({ path, enabled, Component, Layout }) => {
+          if (!enabled) {
+            return null;
+          }
 
-        <Route path="*" element={<Navigate to="/" replace />} />
+          return (
+            <Route key={path} element={Layout && <Layout />}>
+              <Route path={path} element={<Component />} />
+            </Route>
+          );
+        })}
       </Routes>
     </BrowserRouter>
   );
